@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="stageAnchorPane" prefHeight="359.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ronald8192.djifixgui.viewController.HomeController">
+   <children>
+         <Button fx:id="btnSelectVideo" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectVideoClick" text="Select video..." />
+         <Button fx:id="btnStartFix" layoutX="137.0" layoutY="14.0" mnemonicParsing="false" onAction="#startFixClick" text="Start fix" />
+         <Label layoutX="14.0" layoutY="53.0" text="Status: " />
+         <Label fx:id="lblStatusText" layoutX="70.0" layoutY="53.0" prefHeight="15.0" prefWidth="514.0" text="Loading..." textOverrun="CENTER_ELLIPSIS" />
+         <Label layoutX="14.0" layoutY="78.0" text="Logs:" />
+         <TextArea fx:id="txtLogsOut" editable="false" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="572.0" />
+         <Label layoutX="14.0" layoutY="307.0" text="djifix:" />
+         <Label layoutX="14.0" layoutY="330.0" text="djifix-GUI:" />
+         <Hyperlink layoutX="52.0" layoutY="303.0" onAction="#hrefClick" text="http://djifix.live555.com/" />
+         <Hyperlink layoutX="78.0" layoutY="326.0" onAction="#hrefClick" text="https://github.com/ronald8192/djifix-GUI/" />
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+</AnchorPane>
