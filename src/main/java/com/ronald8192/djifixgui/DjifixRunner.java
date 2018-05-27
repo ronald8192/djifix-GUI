@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class DjifixRunner {
@@ -88,6 +91,13 @@ public class DjifixRunner {
                     File repairedFile = files[0];
 
                     App.setStatus("converting to mp4...");
+                    File targetMP4 = new File(this.sourceVideo.getParent() + "/" + filename + "-repaired.mp4");
+                    if(targetMP4.exists()){
+                        if(!targetMP4.delete()){
+                            String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+                            targetMP4 = new File(this.sourceVideo.getParent() + "/" + filename + "-repaired"+ timeStamp +".mp4");
+                        }
+                    }
                     ProcessResult prffmpeg = (ProcessResult) this.prepareProcess(
                             binFfmpeg.getAbsolutePath(),
                             "-framerate",
@@ -96,7 +106,7 @@ public class DjifixRunner {
                             repairedFile.getAbsolutePath(),
                             "-c",
                             "copy",
-                            this.sourceVideo.getParent() + "/" + filename + "-repaired.mp4"
+                            targetMP4.getAbsolutePath()
                     ).get();
                     (new Thread(() -> App.appendLogs(prffmpeg.getStdout() + prffmpeg.getStderr()))).start();
                     repairedFile.delete();
