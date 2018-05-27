@@ -32,6 +32,14 @@ public class DjifixRunner {
         this.fromController = fromController;
     }
 
+    public List<Runnable> shutdownNow() {
+        return this.executor.shutdownNow();
+    }
+
+    public void setSourceVideo(File sourceVideo) {
+        this.sourceVideo = sourceVideo;
+    }
+
     private Future prepareProcess(String ...commands) {
         return executor.submit(() -> {
             log.info("Run command: " + String.join(" ", commands));

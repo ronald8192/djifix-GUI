@@ -1,5 +1,6 @@
 package com.ronald8192.djifixgui;
 
+import com.ronald8192.djifixgui.viewController.HomeController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -41,13 +42,20 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setOnCloseRequest(e -> log.trace("Exiting..."));
+
 
         primaryStage.setTitle("djifix-GUI");
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/home.fxml"));
+        Parent root = loader.load();
+        HomeController homeController = loader.getController();
+        primaryStage.setOnCloseRequest(e -> {
+            log.trace("Exiting...");
+            homeController.shutdownNow();
+        });
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 
     public static void setStatus(String status) {

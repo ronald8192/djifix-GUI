@@ -34,6 +34,7 @@ public class HomeController implements Initializable {
 
     private FileChooser sourceVideoChooser = new FileChooser();
 
+    private DjifixRunner djifixRunner;
     private File sourceVideo;
 
     @Override
@@ -67,7 +68,11 @@ public class HomeController implements Initializable {
     }
 
     public void startFixClick() {
-        DjifixRunner djifixRunner = new DjifixRunner(this.sourceVideo, this);
+        if(djifixRunner == null) {
+            djifixRunner = new DjifixRunner(this.sourceVideo, this);
+        } else {
+            djifixRunner.setSourceVideo(this.sourceVideo);
+        }
         djifixRunner.repair();
     }
 
@@ -80,5 +85,9 @@ public class HomeController implements Initializable {
                 log.error(e.getMessage());
             }
         })).start();
+    }
+
+    public void shutdownNow() {
+        djifixRunner.shutdownNow();
     }
 }
