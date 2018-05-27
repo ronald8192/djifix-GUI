@@ -10,3 +10,6 @@ GUI wrapper for djifix, plus convert video to mp4 by FFmpeg.
 * Linux/Mac/Windows
 * Disk space: 2x free space of original video (if your video is 1GB, you need 2GB free disk space)
 
+## Download
+
+[Latest release](https://github.com/ronald8192/djifix-GUI/releases/latest)
