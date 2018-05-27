@@ -82,7 +82,7 @@ public class DjifixRunner {
                 (new Thread(() -> App.appendLogs(prDjifix.getStdout() + prDjifix.getStderr()))).start();
 
                 String filename = this.sourceVideo.getName().split("[.]")[0];
-                File[] files = (new File(this.sourceVideo.getParent())).listFiles((dir, name) -> name.indexOf(filename + "-repaired.") > 0 && !name.toLowerCase().contains(".mp4"));
+                File[] files = (new File(this.sourceVideo.getParent())).listFiles((dir, name) -> name.contains(filename + "-repaired.") && !name.toLowerCase().contains(".mp4"));
                 if(files != null && files.length > 0) {
                     log.trace("*-repaired.* files: " + Arrays.stream(files).map(File::getName).reduce((a, b) -> a + ", " + b).get());
                     File repairedFile = files[0];
